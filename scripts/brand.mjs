@@ -15,7 +15,7 @@
 //   src/app/opengraph-image.png      1200×630, banner centred on its own cream
 //   src/app/icon.png                 256×256 favicon (hourglass on cream)
 //   src/app/apple-icon.png           180×180
-import { mkdirSync, readFileSync, writeFileSync, copyFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync, copyFileSync } from "node:fs";
 import { deflateSync, inflateSync } from "node:zlib";
 import path from "node:path";
 
@@ -265,6 +265,17 @@ for (const [name, size] of [["icon.png", 256], ["apple-icon.png", 180]]) {
   const scaled = resample(cut, Math.round((cw * target) / ch), target);
   blit(c, scaled, Math.round((size - scaled.w) / 2), Math.round((size - scaled.h) / 2));
   writeFileSync(path.join("src/app", name), encodePng(c));
+}
+
+// the dunes banner (broken hourglass on the right): kept whole for the closing
+// section, and its text-free lower-left part cut out as a ground for the hero
+const SRC_DUNES = "brand-src/banner-dunes.png";
+if (existsSync(SRC_DUNES)) {
+  const dunes = decodePng(SRC_DUNES);
+  writeFileSync("public/brand/banner-dunes.png", encodePng(resample(dunes, 1600, Math.round((dunes.h * 1600) / dunes.w))));
+  const strip = crop(dunes, 0, Math.round(dunes.h * 0.6), Math.round(dunes.w * 0.66), dunes.h - Math.round(dunes.h * 0.6));
+  writeFileSync("public/brand/dunes.png", encodePng(strip));
+  console.log(`dunes: ${dunes.w}×${dunes.h} → banner-dunes 1600 wide, ground strip ${strip.w}×${strip.h}`);
 }
 
 // banner: as supplied, and as the 1200×630 Open Graph card

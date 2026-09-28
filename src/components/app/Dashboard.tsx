@@ -93,7 +93,8 @@ export function Dashboard() {
   const share = h && s && s.totalWeightNow > 0n ? Number((h.weight * 1_000_000n) / s.totalWeightNow) / 1_000_000 : null;
 
   return (
-    <div className="mx-auto w-full max-w-[1200px] px-5 py-8 sm:px-8 sm:py-12">
+    <div className="relative">
+      <div className="relative mx-auto w-full max-w-[1200px] px-5 py-8 sm:px-8 sm:py-12">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="eyebrow">Your rewards</p>
@@ -164,6 +165,7 @@ export function Dashboard() {
             </Link>
           </p>
         </aside>
+      </div>
       </div>
     </div>
   );
