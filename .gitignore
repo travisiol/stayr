@@ -1,0 +1,39 @@
+# dependencies (root app AND the nested contracts package)
+node_modules/
+.pnp
+.pnp.*
+
+# next.js
+/.next/
+/out/
+/build
+
+# hardhat
+contracts/artifacts/
+contracts/cache/
+contracts/typechain-types/
+contracts/deployments/local.json
+contracts/coverage/
+contracts/coverage.json
+
+# captures and logs
+/docs/captures/*.html
+*.log
+dev.log
+
+# misc
+.DS_Store
+*.pem
+
+# env files — never commit secrets; the example is the contract
+.env*
+!.env.example
+contracts/.env*
+!contracts/.env.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

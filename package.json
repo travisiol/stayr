@@ -1,0 +1,43 @@
+{
+  "name": "stayr",
+  "version": "0.1.0",
+  "private": true,
+  "description": "STAYR — Patience pays. Trading fees belong to holders; stay longer to increase your share. Built for Robinhood Chain.",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "dev": "next dev --port 3868",
+    "build": "next build",
+    "start": "next start --port 3868",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test --experimental-strip-types tests/*.test.ts",
+    "test:contracts": "npm --prefix contracts test",
+    "brand": "node scripts/brand.mjs",
+    "capture": "node scripts/capture.mjs",
+    "node:local": "npm --prefix contracts run node",
+    "deploy:local": "npm --prefix contracts run deploy:local",
+    "seed:local": "npm --prefix contracts run seed:local"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.103.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^13.4.0",
+    "next": "16.3.6",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "viem": "^2.56.9",
+    "wagmi": "^3.7.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^24",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.6",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
